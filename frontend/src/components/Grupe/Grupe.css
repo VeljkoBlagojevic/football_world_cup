@@ -1,0 +1,18 @@
+.grupe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grupa-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .grupa-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}

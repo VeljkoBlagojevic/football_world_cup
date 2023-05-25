@@ -1,0 +1,48 @@
+.grupa {
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.grupa-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Added property for equal column width */
+}
+
+.grupa-table th,
+.grupa-table td {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px; /* Adjust the font size as needed */
+    border: 1px solid rgba(254, 195, 16, 0.25);
+
+}
+
+.grupa-table th {
+    background-color: #56042C;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 25px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.grupa-table td {
+    background: rgba(86, 4, 44, 0.75);
+    color: #FFFFFF;
+    font-size: 30px;
+}
+
+.grupa-table tr:nth-child(even) td {
+    background: rgba(86, 4, 44, 0.75);
+}
+
+.grupa-table tr:first-child td {
+    border-top: none;
+}
+
+.grupa-table tr:last-child td {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}

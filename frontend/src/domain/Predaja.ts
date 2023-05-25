@@ -1,0 +1,5 @@
+export enum Predaja {
+    PREDAO_DOMACIN = 'PREDAO_DOMACIN',
+    PREDAO_GOST = 'PREDAO_GOST',
+    NEMA_PREDAJE = 'NEMA_PREDAJE'
+}

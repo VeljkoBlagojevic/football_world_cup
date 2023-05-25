@@ -1,0 +1,43 @@
+.stadion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stadion {
+    background: linear-gradient(210deg, #56042C, rgba(254, 195, 16, 0.50));
+    border-radius: 10px;
+    padding: 20px;
+    color: #FFFFFF;
+    width: 750px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    margin-right: 120px;
+    margin-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stadion:hover {
+    transform: scale(1.1);
+}
+
+.stadion h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.stadion h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.stadion img {
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+    width: 100%;
+    max-width: 1920px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
