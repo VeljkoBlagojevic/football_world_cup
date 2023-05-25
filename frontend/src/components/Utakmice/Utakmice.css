@@ -1,0 +1,14 @@
+/* utakmice-component.css */
+
+.utakmice {
+    justify-content: center;
+    display: flex;
+    margin-top: 25px; /* Added margin */
+}
+
+.utakmica-container {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}

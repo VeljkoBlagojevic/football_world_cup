@@ -1,6 +1,6 @@
 
 export class Reprezentacija {
-    id: number;
+    id?: number;
 
     naziv: string;
 
