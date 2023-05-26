@@ -14,8 +14,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 1280px;
-    height: 750px;
+    width: 100vh;
+    height: 100vh;
     margin: 0 auto;
     background-color: rgba(86, 4, 44, 0.75);
     border-radius: 25px;

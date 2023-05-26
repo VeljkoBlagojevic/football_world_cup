@@ -1,4 +1,5 @@
 .stadioni {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center; /* Add this line */
 }

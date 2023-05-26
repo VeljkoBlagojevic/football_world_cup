@@ -1,0 +1,40 @@
+.app-container {
+    background-image: url("https://cdn.wallpapersafari.com/98/87/3ILi9E.jpg");
+    background-size: cover; /* Scale the image to cover the entire container */
+    background-position: center; /* Center the image within the container */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed;
+}
+
+
+.navbar {
+    background: rgb(86, 4, 44);
+    border-radius: 10px;
+    padding: 20px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-item {
+    margin-right: 50px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 25px;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}

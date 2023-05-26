@@ -4,7 +4,7 @@
     background: linear-gradient(135deg, rgba(86, 4, 44, 1), rgba(255, 201, 71, 0.5));
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items horizontally */
+    align-items: center;
     margin-right: 50px;
     margin-left: 50px;
     margin-top: 50px;
@@ -16,26 +16,19 @@
 }
 
 .utakmica-details h2 {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .utakmica-details p {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
-.utakmica-details .team-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items horizontally */
-    width: 100%; /* Occupy full width */
-}
-
-
+.utakmica-details .team-info,
 .utakmica-details .stadion-info {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items horizontally */
-    width: 100%; /* Occupy full width */
+    align-items: center;
+    width: 100%;
 }
 
 .utakmica-details .stadion-info img {
@@ -48,7 +41,6 @@
     font-size: 18px;
     font-weight: bold;
 }
-
 
 .utakmica-details .team-info p {
     margin-right: 10px;

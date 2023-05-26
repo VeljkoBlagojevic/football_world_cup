@@ -1,9 +1,7 @@
-/* utakmice-component.css */
-
 .utakmice {
     justify-content: center;
     display: flex;
-    margin-top: 25px; /* Added margin */
+    margin-top: 25px;
 }
 
 .utakmica-container {

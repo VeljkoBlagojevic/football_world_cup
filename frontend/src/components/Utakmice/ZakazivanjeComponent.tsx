@@ -1,10 +1,11 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import axios from 'axios';
 
-import { Utakmica } from '../../domain/Utakmica';
-import { Reprezentacija } from '../../domain/Reprezentacija';
-import { Stadion } from '../../domain/Stadion';
+import {Utakmica} from '../../domain/Utakmica';
+import {Reprezentacija} from '../../domain/Reprezentacija';
+import {Stadion} from '../../domain/Stadion';
 import './Zakazivanje.css';
+import {useNavigate} from "react-router-dom";
 
 const ZakazivanjeComponent = () => {
     const [formData, setFormData] = useState<Utakmica>({
@@ -18,6 +19,9 @@ const ZakazivanjeComponent = () => {
     });
     const [reprezentacije, setReprezentacije] = useState<Reprezentacija[]>([]);
     const [stadioni, setStadioni] = useState<Stadion[]>([]);
+
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         fetchReprezentacije();
@@ -97,6 +101,8 @@ const ZakazivanjeComponent = () => {
             .post('http://localhost:8080/api/v1/utakmice', formData)
             .then((response) => {
                 console.log(response.data); // Handle success response
+                alert("Uspesno ste zakazali novu utakmicu");
+                navigate('/utakmice');
                 setFormData({
                     domacin: new Reprezentacija(0, '', '', '', ''),
                     gost: new Reprezentacija(0, '', '', '', ''),

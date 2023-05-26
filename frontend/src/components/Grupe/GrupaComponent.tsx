@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grupa } from "../../domain/Grupa";
+import {Grupa} from "../../domain/Grupa";
 import "./Grupa.css"
 
 interface GrupaComponentProps {
@@ -29,7 +29,7 @@ const GrupaComponent = ({ grupa }: GrupaComponentProps) => {
                     return (
                         <tr key={statistika.id}>
                             <td>{statistika.reprezentacija?.naziv}</td>
-                            <td><img src={statistika.reprezentacija?.zastava}/></td>
+                            <td><img src={statistika.reprezentacija?.zastava} alt={statistika.reprezentacija?.troslovniNaziv}/></td>
                             <td>{statistika.brojOdigranihUtakmica}</td>
                             <td>{statistika.brojPobedjenihUtakmica}</td>
                             <td>{statistika.brojNeresenihUtakmica}</td>
