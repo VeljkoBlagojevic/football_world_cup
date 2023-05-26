@@ -11,7 +11,7 @@ const UtakmicaComponent = ({utakmica}: UtakmicaComponentProps) => {
         <div className="utakmica-details">
             <div className="timovi">
                 <div className="team-info">
-                    <p>Domacin: {utakmica.domacin.naziv}</p>
+                    <p>Domaćin: {utakmica.domacin.naziv}</p>
                     <img src={utakmica.domacin.zastava} alt={utakmica.domacin.naziv}/>
                 </div>
                 <div className="team-info">

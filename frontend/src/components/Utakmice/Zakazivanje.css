@@ -16,7 +16,8 @@
     justify-content: center;
     width: 100vh;
     height: 100vh;
-    margin: 0 auto;
+    margin: auto;
+    margin-top: 25px;
     background-color: rgba(86, 4, 44, 0.75);
     border-radius: 25px;
 }

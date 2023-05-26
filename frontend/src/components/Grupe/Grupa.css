@@ -45,3 +45,8 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+.zastava-img {
+    width: 5rem; /* Adjust the width as desired */
+    height: auto; /* Maintain aspect ratio */
+}

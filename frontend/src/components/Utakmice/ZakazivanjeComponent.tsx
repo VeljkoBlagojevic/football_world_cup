@@ -24,30 +24,31 @@ const ZakazivanjeComponent = () => {
 
 
     useEffect(() => {
-        fetchReprezentacije();
-        fetchStadioni();
+        const fetchData = async () => {
+            await fetchReprezentacije();
+            await fetchStadioni();
+        };
+
+        fetchData();
     }, []);
 
-    const fetchReprezentacije = () => {
-        axios
-            .get('http://localhost:8080/api/v1/reprezentacije')
-            .then((response) => {
-                setReprezentacije(response.data as Reprezentacija[]);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+
+    const fetchReprezentacije = async () => {
+        try {
+            const response = await axios.get('http://localhost:8080/api/v1/reprezentacije');
+            setReprezentacije(response.data as Reprezentacija[]);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
-    const fetchStadioni = () => {
-        axios
-            .get('http://localhost:8080/api/v1/stadioni')
-            .then((response) => {
-                setStadioni(response.data as Stadion[]);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+    const fetchStadioni = async () => {
+        try {
+            const response = await axios.get('http://localhost:8080/api/v1/stadioni');
+            setStadioni(response.data as Stadion[]);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -91,33 +92,32 @@ const ZakazivanjeComponent = () => {
         }));
     };
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         console.log('FORM DATA');
         console.log(formData);
 
-        axios
-            .post('http://localhost:8080/api/v1/utakmice', formData)
-            .then((response) => {
-                console.log(response.data); // Handle success response
-                alert("Uspesno ste zakazali novu utakmicu");
-                navigate('/utakmice');
-                setFormData({
-                    domacin: new Reprezentacija(0, '', '', '', ''),
-                    gost: new Reprezentacija(0, '', '', '', ''),
-                    stadion: new Stadion(0, '', '', 0, ''),
-                    termin: {
-                        pocetak: new Date(),
-                        kraj: new Date(),
-                    },
-                });
-            })
-            .catch((error) => {
-                alert(error.response.data.body.detail)
-                console.error(error); // Handle error response
+        try {
+            const response = await axios.post('http://localhost:8080/api/v1/utakmice', formData);
+            console.log(response.data); // Handle success response
+            alert("Uspesno ste zakazali novu utakmicu");
+            navigate('/utakmice');
+            setFormData({
+                domacin: new Reprezentacija(0, '', '', '', ''),
+                gost: new Reprezentacija(0, '', '', '', ''),
+                stadion: new Stadion(0, '', '', 0, ''),
+                termin: {
+                    pocetak: new Date(),
+                    kraj: new Date(),
+                },
             });
+        } catch (error: any) {
+            alert(error.response.data.body.detail);
+            console.error(error); // Handle error response
+        }
     };
+
 
 
     return (
@@ -125,7 +125,7 @@ const ZakazivanjeComponent = () => {
             <label>
                 Domaćin:
                 <select name="domacin" onChange={(e) => handleReprezentacijaChange(e, 'domacin')}>
-                    <option value="">Select domacin</option>
+                    <option disabled>Izaberite reprezentaciju domaćina</option>
                     {reprezentacije.map((reprezentacija) => (
                         <option key={reprezentacija.id} value={reprezentacija.naziv}>
                             {reprezentacija.naziv}
@@ -137,7 +137,7 @@ const ZakazivanjeComponent = () => {
             <label>
                 Gost:
                 <select name="gost" onChange={(e) => handleReprezentacijaChange(e, 'gost')}>
-                    <option value="">Select gost</option>
+                    <option disabled>Izaberite reprezentaciju gosta</option>
                     {reprezentacije.map((reprezentacija) => (
                         <option key={reprezentacija.id} value={reprezentacija.naziv}>
                             {reprezentacija.naziv}
@@ -149,7 +149,7 @@ const ZakazivanjeComponent = () => {
             <label>
                 Stadion:
                 <select name="stadion" onChange={handleStadionChange}>
-                    <option value="">Select stadion</option>
+                    <option disabled>Izaberite stadion</option>
                     {stadioni.map((stadion) => (
                         <option key={stadion.id} value={stadion.naziv}>
                             {stadion.naziv}
@@ -168,7 +168,7 @@ const ZakazivanjeComponent = () => {
                 <input type="datetime-local" name="termin.kraj" onChange={handleChange} />
             </label>
             <br />
-            <button type="submit">Zakazi</button>
+            <button type="submit">Zakaži</button>
         </form>
     );
 };

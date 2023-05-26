@@ -18,8 +18,8 @@ const GrupaComponent = ({ grupa }: GrupaComponentProps) => {
                     <th>Reprezentacija</th>
                     <th>Zastava</th>
                     <th>Broj odigranih utakmica</th>
-                    <th>Broj pobedjenih utakmica</th>
-                    <th>Broj neresenih utakmica</th>
+                    <th>Broj pobeđenih utakmica</th>
+                    <th>Broj nerešenih utakmica</th>
                     <th>Broj izgubljenih utakmica</th>
                     <th>Broj datih golova</th>
                     <th>Broj primljenih golova</th>
@@ -29,7 +29,10 @@ const GrupaComponent = ({ grupa }: GrupaComponentProps) => {
                     return (
                         <tr key={statistika.id}>
                             <td>{statistika.reprezentacija?.naziv}</td>
-                            <td><img src={statistika.reprezentacija?.zastava} alt={statistika.reprezentacija?.troslovniNaziv}/></td>
+                            <td><img
+                                src={statistika.reprezentacija?.zastava}
+                                alt={statistika.reprezentacija?.troslovniNaziv}
+                                className="zastava-img"/></td>
                             <td>{statistika.brojOdigranihUtakmica}</td>
                             <td>{statistika.brojPobedjenihUtakmica}</td>
                             <td>{statistika.brojNeresenihUtakmica}</td>

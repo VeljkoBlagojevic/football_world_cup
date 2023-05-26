@@ -32,9 +32,9 @@
     text-decoration: none;
     color: #FFFFFF;
     font-size: 25px;
-    transition: opacity 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 .nav-link:hover {
-    opacity: 0.8;
+    color: #FEC310;
 }

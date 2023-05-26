@@ -14,7 +14,7 @@ function App() {
                 <nav className="navbar">
                     <ul className="nav-menu">
                         <li className="nav-item">
-                            <Link to="/" className="nav-link">Home</Link>
+                            <Link to="/" className="nav-link">Početna</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/stadioni" className="nav-link">Stadioni</Link>

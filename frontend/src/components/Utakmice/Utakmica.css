@@ -1,5 +1,5 @@
 .utakmica-details {
-    width: 750px;
+    width: 800px;
     border-radius: 25px;
     background: linear-gradient(135deg, rgba(86, 4, 44, 1), rgba(255, 201, 71, 0.5));
     display: flex;
@@ -16,11 +16,13 @@
 }
 
 .utakmica-details h2 {
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 .utakmica-details p {
-    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    color: #FFFFFF;
 }
 
 .utakmica-details .team-info,
@@ -38,8 +40,7 @@
 }
 
 .utakmica-details .stadion-info p {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 20px;
 }
 
 .utakmica-details .team-info p {
@@ -48,4 +49,9 @@
 
 .timovi {
     display: flex;
+}
+
+.team-info {
+    margin-left: 25px;
+    margin-right: 25px;
 }
