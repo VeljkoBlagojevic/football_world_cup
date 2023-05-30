@@ -31,7 +31,6 @@ public class CountryFlagController {
                 .filter(reprezentacija -> !reprezentacija.getNaziv().equals("England"))
                 .filter(reprezentacija -> !reprezentacija.getNaziv().equals("Wales"))
                 .forEach(reprezentacija -> {
-                    System.out.println(reprezentacija);
                     reprezentacija.setZastava("https://flagcdn.com/256x192/" + reprezentacija.getDvoslovniNaziv().toLowerCase() + ".png");
                     reprezentacijaRepository.save(reprezentacija);
                     uriVariables.put("countryCode", reprezentacija.getDvoslovniNaziv().toLowerCase());

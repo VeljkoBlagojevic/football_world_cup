@@ -3,6 +3,10 @@ package rs.ac.bg.fon.football_world_cup.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -18,17 +22,17 @@ public class Reprezentacija {
 
     @Id
     @GeneratedValue
-//    @NotNull(message = "Mora se proslediti identifikator reprezentacije")
+    @NotNull(message = "Mora se proslediti identifikator reprezentacije")
     private Long id;
 
-    //    @NotBlank(message = "Naziv reprezentacije ne sme biti prazan")
-//    @NotEmpty(message = "Mora se postaviti naziv reprezentacije")
+    @NotBlank(message = "Naziv reprezentacije ne sme biti prazan")
+    @NotEmpty(message = "Mora se postaviti naziv reprezentacije")
     private String naziv;
 
-    //    @Size(min = 2, max = 2, message = "Dvoslovni naziv predstavlja Alpha-2 code")
+    @Size(min = 2, max = 2, message = "Dvoslovni naziv predstavlja Alpha-2 code")
     private String dvoslovniNaziv;
 
-    //    @Size(min = 3, max = 3, message = "Dvoslovni naziv predstavlja Alpha-3 code")
+    @Size(min = 3, max = 3, message = "Dvoslovni naziv predstavlja Alpha-3 code")
     private String troslovniNaziv;
 
     private String zastava;

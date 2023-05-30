@@ -1,6 +1,9 @@
 package rs.ac.bg.fon.football_world_cup.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
 @Entity
@@ -18,15 +21,15 @@ public class EvidencijaUtakmice {
     @GeneratedValue
     private Long id;
 
-    //    @PositiveOrZero(message = "Domacin ne moze dati negativan broj golova")
+    @PositiveOrZero(message = "Domacin ne moze dati negativan broj golova")
     private int brojGolovaDomacina;
 
-    //    @PositiveOrZero(message = "Gost ne moze dati negativan broj golova")
+    @PositiveOrZero(message = "Gost ne moze dati negativan broj golova")
     private int brojGolovaGosta;
 
     @Enumerated(EnumType.STRING)
-//    @Valid
-//    @NotNull(message = "Mora se odrediti da li je bilo predaje")
+    @Valid
+    @NotNull(message = "Mora se odrediti da li je bilo predaje")
     @Builder.Default
     private Predaja predaja = Predaja.NEMA_PREDAJE;
 }
