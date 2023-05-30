@@ -31,7 +31,7 @@ public class Utakmica {
 //    @NotNull(message = "Mora se proslediti koja reprezentacija je gost na utakmici")
     private Reprezentacija gost;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "evidencija_utakmice_id")
     private EvidencijaUtakmice evidencijaUtakmice;
 
@@ -45,5 +45,7 @@ public class Utakmica {
 //    @Valid
 //    @NotNull(message = "Mora se proslediti zeljeni termin")
     private Termin termin;
+
+    private boolean odigrana;
 
 }

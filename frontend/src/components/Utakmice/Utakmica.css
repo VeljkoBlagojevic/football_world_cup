@@ -1,7 +1,8 @@
-.utakmica-details {
+.utakmica {
     width: 800px;
     border-radius: 25px;
-    background: linear-gradient(135deg, rgba(86, 4, 44, 1), rgba(255, 201, 71, 0.5));
+    background: linear-gradient(45deg, rgba(86, 4, 44, 1), rgba(255, 201, 71, 0.5));
+    backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,39 +12,40 @@
     transition: transform 0.2s ease-in-out;
 }
 
-.utakmica-details:hover {
+.utakmica:hover {
     transform: scale(1.1);
+    cursor: pointer;
 }
 
-.utakmica-details h2 {
+.utakmica h2 {
     color: #FFFFFF;
 }
 
-.utakmica-details p {
+.utakmica p {
     font-size: 25px;
     font-weight: bold;
     color: #FFFFFF;
 }
 
-.utakmica-details .team-info,
-.utakmica-details .stadion-info {
+.utakmica .team-info,
+.utakmica .stadion-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-.utakmica-details .stadion-info img {
+.utakmica .stadion-info img {
     width: 360px;
     height: 203px;
     border-radius: 25px;
 }
 
-.utakmica-details .stadion-info p {
+.utakmica .stadion-info p {
     font-size: 20px;
 }
 
-.utakmica-details .team-info p {
+.utakmica .team-info p {
     margin-right: 10px;
 }
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Stadion} from "../../domain/Stadion";
 import axios from "axios";
 import StadionComponent from "./StadionComponent";
@@ -23,7 +23,8 @@ const StadioniComponent = () => {
 
     return (
         <div className="stadioni">
-            <div className="stadion-container">{stadioni.map(stadion => <StadionComponent stadion={stadion} key={stadion.id}/>)}</div>
+            <div className="stadion-container">{stadioni.map(stadion => <StadionComponent stadion={stadion}
+                                                                                          key={stadion.id}/>)}</div>
         </div>
     );
 };

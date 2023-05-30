@@ -29,6 +29,7 @@
 
 .grupa-table td {
     background: rgba(86, 4, 44, 0.75);
+    backdrop-filter: blur(4px);
     color: #FFFFFF;
     font-size: 30px;
 }

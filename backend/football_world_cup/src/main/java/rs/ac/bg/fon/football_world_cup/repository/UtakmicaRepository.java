@@ -8,7 +8,10 @@ import java.util.List;
 
 @Repository
 public interface UtakmicaRepository extends JpaRepository<Utakmica, Long> {
+    List<Utakmica> findByOdigrana(boolean odigrana);
+
     List<Utakmica> findByDomacinIdOrGostId(Long domacinId, Long gostId);
+
     List<Utakmica> findByStadionId(Long stadionId);
 
 }

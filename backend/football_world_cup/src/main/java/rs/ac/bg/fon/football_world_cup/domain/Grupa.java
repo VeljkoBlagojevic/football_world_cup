@@ -23,7 +23,7 @@ public class Grupa {
     @GeneratedValue
     private Long id;
 
-//    @NotBlank(message = "Morate uneti naziv grupe")
+    //    @NotBlank(message = "Morate uneti naziv grupe")
     private String naziv;
 
     @OneToMany

@@ -1,14 +1,20 @@
-import React from 'react';
 import {Utakmica} from "../../domain/Utakmica";
 import "./Utakmica.css";
+import {useNavigate} from "react-router-dom";
 
 interface UtakmicaComponentProps {
     utakmica: Utakmica;
 }
 
 const UtakmicaComponent = ({utakmica}: UtakmicaComponentProps) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/utakmice/' + utakmica.id);
+    };
+
     return (
-        <div className="utakmica-details">
+        <div className="utakmica" onClick={handleClick}>
             <div className="timovi">
                 <div className="team-info">
                     <p>Domaćin: {utakmica.domacin.naziv}</p>

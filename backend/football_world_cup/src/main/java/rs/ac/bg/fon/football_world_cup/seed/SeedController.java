@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SeedController {
 
-//    private final MundijalSeeder mundijalSeeder;
     private final StadionSeeder stadionSeeder;
     private final GrupaIReprezentacijaSeeder grupaIReprezentacijaSeeder;
 
     @GetMapping
     public void seed() {
-//        mundijalSeeder.seedMundijalData();
         stadionSeeder.seedStadionData();
         grupaIReprezentacijaSeeder.seedGrupeAndReprezentacijeData();
     }

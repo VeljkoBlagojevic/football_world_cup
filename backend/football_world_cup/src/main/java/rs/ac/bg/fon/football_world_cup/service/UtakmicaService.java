@@ -3,24 +3,29 @@ package rs.ac.bg.fon.football_world_cup.service;
 import com.google.common.base.Preconditions;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import rs.ac.bg.fon.football_world_cup.domain.EvidencijaUtakmice;
+import rs.ac.bg.fon.football_world_cup.domain.Predaja;
 import rs.ac.bg.fon.football_world_cup.domain.Utakmica;
+import rs.ac.bg.fon.football_world_cup.repository.EvidencijaUtakmiceRepository;
 import rs.ac.bg.fon.football_world_cup.repository.UtakmicaRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
 public class UtakmicaService {
-
+    public static final int TRAJANJE_UTAKMICE = 90;
 
     private final UtakmicaRepository utakmicaRepository;
     private final GrupaService grupaService;
     private final TerminService terminService;
-    public static final int TRAJANJE_UTAKMICE = 90;
+    private final EvidencijaUtakmiceRepository evidencijaUtakmiceRepository;
+    private final MatchResultProcessor matchResultProcessor;
 
-    public List<Utakmica> getAll() {
-        return utakmicaRepository.findAll();
+    public List<Utakmica> getAll(boolean odigrana) {
+        return utakmicaRepository.findByOdigrana(odigrana);
     }
 
     public Utakmica zakaziUtakmicu(Utakmica utakmica) {
@@ -60,7 +65,28 @@ public class UtakmicaService {
                 .anyMatch(
                         zakazanaUtakmica ->
                                 (utakmica.getDomacin().equals(zakazanaUtakmica.getDomacin()) && utakmica.getGost().equals(zakazanaUtakmica.getGost())) ||
-                                (utakmica.getDomacin().equals(zakazanaUtakmica.getGost()) && utakmica.getGost().equals(zakazanaUtakmica.getDomacin())));
+                                        (utakmica.getDomacin().equals(zakazanaUtakmica.getGost()) && utakmica.getGost().equals(zakazanaUtakmica.getDomacin())));
         Preconditions.checkState(!reprezentacijeSuIgraliVecMedjusobno, "Reprezetancije su vec igrale medjusobno utakmicu");
+    }
+
+    public Utakmica getById(Long id) {
+        return utakmicaRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    }
+
+    public Utakmica evidentirajRezultat(Long utakmicaId, EvidencijaUtakmice evidencijaUtakmice) {
+        Utakmica utakmica = getById(utakmicaId);
+
+        if (evidencijaUtakmice.getPredaja().equals(Predaja.NEMA_PREDAJE) && (utakmica.getTermin().getKraj().isAfter(LocalDateTime.now()))) {
+            throw new IllegalStateException("Ne mozete uneti rezultat pre nego sto se zavrsi utakmica");
+        }
+
+        utakmica.setEvidencijaUtakmice(evidencijaUtakmice);
+
+        matchResultProcessor.processRezultatUtakmice(utakmica);
+
+        utakmica.setOdigrana(true);
+
+        evidencijaUtakmiceRepository.save(evidencijaUtakmice);
+        return utakmicaRepository.save(utakmica);
     }
 }

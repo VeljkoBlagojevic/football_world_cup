@@ -8,12 +8,13 @@ export class Utakmica {
     public gost: Reprezentacija;
     public evidencijaUtakmice?: EvidencijaUtakmice;
     public stadion: Stadion;
+    public odigrana: boolean;
     public termin: {
         pocetak: Date;
         kraj: Date;
     };
 
-    constructor(id: number, domacin: Reprezentacija, gost: Reprezentacija, evidencijaUtakmice: EvidencijaUtakmice, stadion: Stadion, termin: {
+    constructor(id: number, domacin: Reprezentacija, gost: Reprezentacija, evidencijaUtakmice: EvidencijaUtakmice, stadion: Stadion, odigrana:boolean, termin: {
         pocetak: Date;
         kraj: Date
     }) {
@@ -22,6 +23,7 @@ export class Utakmica {
         this.gost = gost;
         this.evidencijaUtakmice = evidencijaUtakmice;
         this.stadion = stadion;
+        this.odigrana = odigrana;
         this.termin = termin;
     }
 }

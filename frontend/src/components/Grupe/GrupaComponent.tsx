@@ -1,4 +1,3 @@
-import React from 'react';
 import {Grupa} from "../../domain/Grupa";
 import "./Grupa.css"
 
@@ -6,7 +5,7 @@ interface GrupaComponentProps {
     grupa: Grupa;
 }
 
-const GrupaComponent = ({ grupa }: GrupaComponentProps) => {
+const GrupaComponent = ({grupa}: GrupaComponentProps) => {
     return (
         <div className="grupa">
             <table className="grupa-table">

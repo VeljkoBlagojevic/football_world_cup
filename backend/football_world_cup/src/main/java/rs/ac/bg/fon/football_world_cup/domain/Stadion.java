@@ -20,12 +20,12 @@ public class Stadion {
     @GeneratedValue
     private Long id;
 
-//    @NotBlank(message = "Mora postojati naziv stadiona")
+    //    @NotBlank(message = "Mora postojati naziv stadiona")
     private String naziv;
 
     private String lokacija;
 
-//    @PositiveOrZero(message = "Kapacitet mora biti pozitivan celobrojan broj")
+    //    @PositiveOrZero(message = "Kapacitet mora biti pozitivan celobrojan broj")
     private int kapacitet;
 
     private String slika;

@@ -1,35 +1,18 @@
-import React from 'react';
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import StadioniComponent from "./components/Stadioni/StadioniComponent";
 import GrupeComponent from "./components/Grupe/GrupeComponent";
 import LandingPage from "./components/Landing/LandingPage";
 import ZakazivanjeComponent from "./components/Utakmice/ZakazivanjeComponent";
 import UtakmiceComponent from "./components/Utakmice/UtakmiceComponent";
+import EvidencijaComponent from "./components/Utakmice/EvidencijaComponent";
+import NavBar from "./components/NavBar/NavBar";
 import './App.css';
 
 function App() {
     return (
         <Router>
             <div className="app-container">
-                <nav className="navbar">
-                    <ul className="nav-menu">
-                        <li className="nav-item">
-                            <Link to="/" className="nav-link">Početna</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/stadioni" className="nav-link">Stadioni</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/grupe" className="nav-link">Grupe</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/zakazivanje" className="nav-link">Zakazivanje</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/utakmice" className="nav-link">Utakmice</Link>
-                        </li>
-                    </ul>
-                </nav>
+                <NavBar/>
 
                 <Routes>
                     <Route path="/" element={<LandingPage/>}/>
@@ -37,6 +20,7 @@ function App() {
                     <Route path="/grupe" element={<GrupeComponent/>}/>
                     <Route path="/zakazivanje" element={<ZakazivanjeComponent/>}/>
                     <Route path="/utakmice" element={<UtakmiceComponent/>}/>
+                    <Route path="/utakmice/:id" element={<EvidencijaComponent/>}/>
                 </Routes>
             </div>
         </Router>

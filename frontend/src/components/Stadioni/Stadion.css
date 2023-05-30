@@ -7,13 +7,14 @@
 
 .stadion {
     background: linear-gradient(210deg, #56042C, rgba(254, 195, 16, 0.50));
+    backdrop-filter: blur(3px);
     border-radius: 10px;
     padding: 20px;
     color: #FFFFFF;
     width: 750px;
     text-align: center;
     transition: transform 0.2s ease-in-out;
-    margin: 100px;
+    margin: 25px;
     display: flex;
     flex-direction: column;
     margin-left: auto;
@@ -24,6 +25,7 @@
 .stadion:hover {
     transform: scale(1.05); /* Increase size on hover */
 }
+
 .stadion h1 {
     font-size: 50px;
 }

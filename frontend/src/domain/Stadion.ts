@@ -1,4 +1,3 @@
-
 export class Stadion {
     id: number;
 

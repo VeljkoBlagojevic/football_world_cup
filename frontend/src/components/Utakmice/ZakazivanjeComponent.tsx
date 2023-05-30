@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
+import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import axios from 'axios';
 
 import {Utakmica} from '../../domain/Utakmica';
@@ -12,6 +12,7 @@ const ZakazivanjeComponent = () => {
         domacin: new Reprezentacija(0, '', '', '', ''),
         gost: new Reprezentacija(0, '', '', '', ''),
         stadion: new Stadion(0, '', '', 0, ''),
+        odigrana: false,
         termin: {
             pocetak: new Date(),
             kraj: new Date(),
@@ -56,13 +57,12 @@ const ZakazivanjeComponent = () => {
 
         // Check if the field belongs to the nested `termin` object
         if (name.startsWith('termin.')) {
-            const terminField = name.split('.')[1];
-
+            const terminField = name.split('.')[1]; // Get the field name after 'termin.'
             setFormData((prevFormData) => ({
                 ...prevFormData,
                 termin: {
                     ...prevFormData.termin,
-                    [terminField]: new Date(value), // Convert input value to a Date object
+                    [terminField]: value,
                 },
             }));
         } else {
@@ -75,7 +75,7 @@ const ZakazivanjeComponent = () => {
 
 
     const handleReprezentacijaChange = (e: ChangeEvent<HTMLSelectElement>, property: string) => {
-        const { value } = e.target;
+        const {value} = e.target;
         const selectedReprezentacija = reprezentacije.find((reprezentacija) => reprezentacija.naziv === value);
         setFormData((prevFormData) => ({
             ...prevFormData,
@@ -86,11 +86,13 @@ const ZakazivanjeComponent = () => {
     const handleStadionChange = (e: ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target;
         const selectedStadion = stadioni.find((stadion) => stadion.naziv === value);
+
         setFormData((prevFormData) => ({
             ...prevFormData,
             stadion: selectedStadion || new Stadion(0, '', '', 0, ''),
         }));
     };
+
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -107,6 +109,7 @@ const ZakazivanjeComponent = () => {
                 domacin: new Reprezentacija(0, '', '', '', ''),
                 gost: new Reprezentacija(0, '', '', '', ''),
                 stadion: new Stadion(0, '', '', 0, ''),
+                odigrana: false,
                 termin: {
                     pocetak: new Date(),
                     kraj: new Date(),
@@ -117,7 +120,6 @@ const ZakazivanjeComponent = () => {
             console.error(error); // Handle error response
         }
     };
-
 
 
     return (
@@ -133,7 +135,7 @@ const ZakazivanjeComponent = () => {
                     ))}
                 </select>
             </label>
-            <br />
+            <br/>
             <label>
                 Gost:
                 <select name="gost" onChange={(e) => handleReprezentacijaChange(e, 'gost')}>
@@ -145,7 +147,7 @@ const ZakazivanjeComponent = () => {
                     ))}
                 </select>
             </label>
-            <br />
+            <br/>
             <label>
                 Stadion:
                 <select name="stadion" onChange={handleStadionChange}>
@@ -157,17 +159,17 @@ const ZakazivanjeComponent = () => {
                     ))}
                 </select>
             </label>
-            <br />
+            <br/>
             <label>
                 Početak:
-                <input type="datetime-local" name="termin.pocetak" onChange={handleChange} />
+                <input type="datetime-local" name="termin.pocetak" onChange={handleChange}/>
             </label>
-            <br />
+            <br/>
             <label>
                 Kraj:
-                <input type="datetime-local" name="termin.kraj" onChange={handleChange} />
+                <input type="datetime-local" name="termin.kraj" onChange={handleChange}/>
             </label>
-            <br />
+            <br/>
             <button type="submit">Zakaži</button>
         </form>
     );

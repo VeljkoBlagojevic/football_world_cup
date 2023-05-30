@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Grupa} from "../../domain/Grupa";
 import axios from "axios";
 import GrupaComponent from "./GrupaComponent";

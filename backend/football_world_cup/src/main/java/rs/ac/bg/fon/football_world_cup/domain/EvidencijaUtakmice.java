@@ -18,10 +18,10 @@ public class EvidencijaUtakmice {
     @GeneratedValue
     private Long id;
 
-//    @PositiveOrZero(message = "Domacin ne moze dati negativan broj golova")
+    //    @PositiveOrZero(message = "Domacin ne moze dati negativan broj golova")
     private int brojGolovaDomacina;
 
-//    @PositiveOrZero(message = "Gost ne moze dati negativan broj golova")
+    //    @PositiveOrZero(message = "Gost ne moze dati negativan broj golova")
     private int brojGolovaGosta;
 
     @Enumerated(EnumType.STRING)

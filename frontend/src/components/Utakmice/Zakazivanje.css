@@ -19,9 +19,9 @@
     margin: auto;
     margin-top: 25px;
     background-color: rgba(86, 4, 44, 0.75);
+    backdrop-filter: blur(3px);
     border-radius: 25px;
 }
-
 
 
 .utakmica-form select,

@@ -9,5 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface GrupaRepository extends JpaRepository<Grupa, Long> {
+
     Optional<Grupa> findByReprezentacije(Reprezentacija reprezentacije);
 }
