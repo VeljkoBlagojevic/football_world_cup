@@ -10,6 +10,9 @@ const UtakmicaComponent = ({utakmica}: UtakmicaComponentProps) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
+        if (utakmica.odigrana) {
+            return;
+        }
         navigate('/utakmice/' + utakmica.id);
     };
 
@@ -19,10 +22,12 @@ const UtakmicaComponent = ({utakmica}: UtakmicaComponentProps) => {
                 <div className="team-info">
                     <p>Domaćin: {utakmica.domacin.naziv}</p>
                     <img src={utakmica.domacin.zastava} alt={utakmica.domacin.naziv}/>
+                    {utakmica.odigrana && <p>Broj golova: {utakmica.evidencijaUtakmice?.brojGolovaDomacina}</p>}
                 </div>
                 <div className="team-info">
                     <p>Gost: {utakmica.gost.naziv}</p>
                     <img src={utakmica.gost.zastava} alt={utakmica.gost.naziv}/>
+                    {utakmica.odigrana && <p>Broj golova: {utakmica.evidencijaUtakmice?.brojGolovaGosta}</p>}
                 </div>
             </div>
             <div className="stadion-info">

@@ -1,4 +1,4 @@
-import {ChangeEvent, FormEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import axios from "axios";
 import {Utakmica} from "../../domain/Utakmica";
@@ -22,8 +22,8 @@ const EvidencijaComponent = () => {
         const getUtakmica = async () => {
             if (id) {
                 try {
-                    const response = await axios.get("http://localhost:8080/api/v1/utakmice/" + id);
-                    setUtakmica(response.data as Utakmica);
+                    const response = await axios.get<Utakmica>("http://localhost:8080/api/v1/utakmice/" + id);
+                    setUtakmica(response.data);
                 } catch (error) {
                     console.error("Failed to fetch utakmica:", error);
                 }
@@ -62,21 +62,25 @@ const EvidencijaComponent = () => {
     };
 
 
+    function navigateToReprezentacija(id: number | undefined) {
+        navigate(`/reprezentacije/${id}`);
+    }
+
     return (
         <div className="utakmica-details">
             <form className="evidencija-form" onSubmit={handleSubmit}>
                 <div className="timovi">
                     <div className="domacin">
-                        <h1>Domaćin: {utakmica.domacin?.naziv}</h1>
+                        <h1 onClick={() => navigateToReprezentacija(utakmica.domacin?.id)}>Domaćin: {utakmica.domacin?.naziv}</h1>
                         <img src={utakmica.domacin?.zastava} alt={utakmica.domacin?.troslovniNaziv}/>
                         <label>
                             Broj postignutih golova:
-                            <input type="number" name="brojGolovaDomacina" onChange={handleChange} />
+                            <input type="number" name="brojGolovaDomacina" onChange={handleChange}/>
                         </label>
                         <br/>
                     </div>
                     <div className="gost">
-                        <h1>Gost: {utakmica.gost?.naziv}</h1>
+                        <h1 onClick={() => navigateToReprezentacija(utakmica.gost?.id)}>Gost: {utakmica.gost?.naziv}</h1>
                         <img src={utakmica.gost?.zastava} alt={utakmica.gost?.troslovniNaziv}/>
                         <label>
                             Broj postignutih golova:

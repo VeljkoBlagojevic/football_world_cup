@@ -2,9 +2,7 @@ package rs.ac.bg.fon.football_world_cup.seed;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import rs.ac.bg.fon.football_world_cup.repository.ReprezentacijaRepository;
 
@@ -14,16 +12,13 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
-@RequestMapping("/api/v1/countryFlags")
+@Component
 @RequiredArgsConstructor
-public class CountryFlagController {
+public class CountryFlagsSeeder {
 
     private final ReprezentacijaRepository reprezentacijaRepository;
 
-
-    @GetMapping
-    public void setCountryFlasgs() {
+    public void seedCountryFlags() {
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://flagcdn.com/256x192/{countryCode}.png";
         Map<String, String> uriVariables = new HashMap<>();

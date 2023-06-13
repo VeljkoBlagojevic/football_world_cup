@@ -5,8 +5,10 @@ import LandingPage from "./components/Landing/LandingPage";
 import ZakazivanjeComponent from "./components/Utakmice/ZakazivanjeComponent";
 import UtakmiceComponent from "./components/Utakmice/UtakmiceComponent";
 import EvidencijaComponent from "./components/Utakmice/EvidencijaComponent";
+import ReprezentacijaComponent from "./components/Reprezentacija/ReprezentacijaComponent";
 import NavBar from "./components/NavBar/NavBar";
 import './App.css';
+import React from "react";
 
 function App() {
     return (
@@ -21,6 +23,7 @@ function App() {
                     <Route path="/zakazivanje" element={<ZakazivanjeComponent/>}/>
                     <Route path="/utakmice" element={<UtakmiceComponent/>}/>
                     <Route path="/utakmice/:id" element={<EvidencijaComponent/>}/>
+                    <Route path="/reprezentacije/:id" element={<ReprezentacijaComponent/>}/>
                 </Routes>
             </div>
         </Router>

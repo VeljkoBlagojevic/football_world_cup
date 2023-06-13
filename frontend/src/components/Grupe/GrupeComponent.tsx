@@ -10,9 +10,9 @@ const GrupeComponent = () => {
     useEffect(() => {
         const getGrupe = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/v1/grupe');
+                const response = await axios.get<Grupa[]>('http://localhost:8080/api/v1/grupe');
                 console.log(response.data);
-                setGrupe(response.data as Grupa[]);
+                setGrupe(response.data);
             } catch (error) {
                 console.error('Failed to fetch stadions:', error);
                 throw error;

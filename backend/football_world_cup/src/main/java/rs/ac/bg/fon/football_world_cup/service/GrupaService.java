@@ -27,7 +27,7 @@ public class GrupaService {
     }
 
     public Grupa getById(Long id) {
-        Grupa grupa = grupaRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        Grupa grupa = grupaRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Nije pronadjena grupa sa id: " + id));
         grupa.getStatistikeReprezentacija().
                 sort(Comparator
                         .comparing(StatistikaReprezentacije::getBrojOsvojenihPoena).reversed()
@@ -36,8 +36,8 @@ public class GrupaService {
     }
 
     public boolean izIsteGrupe(Reprezentacija domacin, Reprezentacija gost) {
-        Grupa grupaDomacina = grupaRepository.findByReprezentacije(domacin).orElseThrow(NoSuchElementException::new);
-        Grupa grupaGosta = grupaRepository.findByReprezentacije(gost).orElseThrow(NoSuchElementException::new);
+        Grupa grupaDomacina = grupaRepository.findByReprezentacije(domacin).orElseThrow(() -> new NoSuchElementException("Nije pronadjena domacin reprezentacija " + domacin));
+        Grupa grupaGosta = grupaRepository.findByReprezentacije(gost).orElseThrow(() -> new NoSuchElementException("Nije pronadjena gostujuca reprezentacija " + gost));
         return grupaDomacina.equals(grupaGosta);
     }
 

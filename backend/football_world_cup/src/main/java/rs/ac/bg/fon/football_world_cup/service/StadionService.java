@@ -19,6 +19,6 @@ public class StadionService {
     }
 
     public Stadion getById(Long id) {
-        return stadionRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        return stadionRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Nije pronadjen stadion sa id: " + id));
     }
 }

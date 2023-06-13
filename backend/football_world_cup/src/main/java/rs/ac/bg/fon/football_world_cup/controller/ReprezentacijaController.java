@@ -1,10 +1,7 @@
 package rs.ac.bg.fon.football_world_cup.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rs.ac.bg.fon.football_world_cup.domain.Reprezentacija;
 import rs.ac.bg.fon.football_world_cup.service.ReprezentacijaService;
 
@@ -21,5 +18,10 @@ public class ReprezentacijaController {
     @GetMapping
     public List<Reprezentacija> getAll() {
         return reprezentacijaService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Reprezentacija getById(@PathVariable Long id) {
+        return reprezentacijaService.getById(id);
     }
 }

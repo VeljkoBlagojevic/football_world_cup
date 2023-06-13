@@ -1,11 +1,19 @@
 import {Grupa} from "../../domain/Grupa";
 import "./Grupa.css"
+import {useNavigate} from "react-router-dom";
 
 interface GrupaComponentProps {
     grupa: Grupa;
 }
 
 const GrupaComponent = ({grupa}: GrupaComponentProps) => {
+
+    const navigate = useNavigate();
+    function navigateToReprezentacija(id: number | undefined) {
+        console.log(id);
+        navigate(`/reprezentacije/${id}`);
+    }
+
     return (
         <div className="grupa">
             <table className="grupa-table">
@@ -27,7 +35,7 @@ const GrupaComponent = ({grupa}: GrupaComponentProps) => {
                 {grupa.statistikeReprezentacija?.map(statistika => {
                     return (
                         <tr key={statistika.id}>
-                            <td>{statistika.reprezentacija?.naziv}</td>
+                            <td onClick={() => navigateToReprezentacija(statistika.reprezentacija?.id)}>{statistika.reprezentacija?.naziv}</td>
                             <td><img
                                 src={statistika.reprezentacija?.zastava}
                                 alt={statistika.reprezentacija?.troslovniNaziv}

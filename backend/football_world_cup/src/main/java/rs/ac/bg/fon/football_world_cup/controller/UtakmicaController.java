@@ -17,7 +17,13 @@ public class UtakmicaController {
 
     private final UtakmicaService utakmicaService;
 
+
     @GetMapping
+    public List<Utakmica> getAll() {
+        return utakmicaService.getAll();
+    }
+
+    @GetMapping(params = "odigrana")
     public List<Utakmica> getAll(@RequestParam boolean odigrana) {
         return utakmicaService.getAll(odigrana);
     }
@@ -25,6 +31,11 @@ public class UtakmicaController {
     @GetMapping("/{utakmicaId}")
     public Utakmica getById(@PathVariable Long utakmicaId) {
         return utakmicaService.getById(utakmicaId);
+    }
+
+    @GetMapping("/reprezentacija/{reprezentacijaId}")
+    public List<Utakmica> getAllByReprezentacijaId(@PathVariable Long reprezentacijaId) {
+        return utakmicaService.getAllByReprezentacija(reprezentacijaId);
     }
 
     @PostMapping
@@ -37,8 +48,4 @@ public class UtakmicaController {
         return utakmicaService.evidentirajRezultat(utakmicaId, evidencijaUtakmice);
     }
 
-    @PostMapping("/validacija")
-    public void validacija(@RequestBody @Valid Utakmica utakmica) {
-        System.out.println(utakmica);
-    }
 }

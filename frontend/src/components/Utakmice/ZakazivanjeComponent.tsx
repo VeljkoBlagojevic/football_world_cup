@@ -36,8 +36,8 @@ const ZakazivanjeComponent = () => {
 
     const fetchReprezentacije = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/v1/reprezentacije');
-            setReprezentacije(response.data as Reprezentacija[]);
+            const response = await axios.get<Reprezentacija[]>('http://localhost:8080/api/v1/reprezentacije');
+            setReprezentacije(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -45,8 +45,8 @@ const ZakazivanjeComponent = () => {
 
     const fetchStadioni = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/api/v1/stadioni');
-            setStadioni(response.data as Stadion[]);
+            const response = await axios.get<Stadion[]>('http://localhost:8080/api/v1/stadioni');
+            setStadioni(response.data);
         } catch (error) {
             console.error(error);
         }

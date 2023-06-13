@@ -10,8 +10,8 @@ const StadioniComponent = () => {
     useEffect(() => {
         const getStadioni = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/v1/stadioni');
-                setStadioni(response.data as Stadion[]);
+                const response = await axios.get<Stadion[]>('http://localhost:8080/api/v1/stadioni');
+                setStadioni(response.data);
             } catch (error) {
                 console.error('Failed to fetch stadions:', error);
                 throw error;

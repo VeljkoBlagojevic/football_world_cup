@@ -29,12 +29,12 @@ public class Grupa {
     @NotBlank(message = "Morate uneti naziv grupe")
     private String naziv;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @Valid
     @Size(min = BROJ_REPREZENTACIJA_U_GRUPI, max = BROJ_REPREZENTACIJA_U_GRUPI, message = "Moguce je tacno " + BROJ_REPREZENTACIJA_U_GRUPI + " ekipe u jednoj grupi")
     private List<Reprezentacija> reprezentacije = new ArrayList<>(BROJ_REPREZENTACIJA_U_GRUPI);
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Valid
     @Size(min = BROJ_REPREZENTACIJA_U_GRUPI, max = BROJ_REPREZENTACIJA_U_GRUPI, message = "Moguce je tacno " + BROJ_REPREZENTACIJA_U_GRUPI + " ekipe u jednoj grupi")
     private List<StatistikaReprezentacije> statistikeReprezentacija = new ArrayList<>(BROJ_REPREZENTACIJA_U_GRUPI);

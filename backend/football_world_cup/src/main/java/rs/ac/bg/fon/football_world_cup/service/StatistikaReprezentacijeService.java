@@ -14,12 +14,8 @@ public class StatistikaReprezentacijeService {
 
     private final StatistikaReprezentacijeRepository statistikaReprezentacijeRepository;
 
-    public StatistikaReprezentacije getByReprezentacijaId(Long reprezentacijaId) {
-        return statistikaReprezentacijeRepository.findByReprezentacijaId(reprezentacijaId).orElseThrow(NoSuchElementException::new);
-    }
-
     public StatistikaReprezentacije getByReprezentacija(Reprezentacija reprezentacija) {
-        return statistikaReprezentacijeRepository.findByReprezentacijaId(reprezentacija.getId()).orElseThrow(NoSuchElementException::new);
+        return statistikaReprezentacijeRepository.findByReprezentacijaId(reprezentacija.getId()).orElseThrow(() -> new NoSuchElementException("Nije pronadjena reprezentacija: " + reprezentacija));
     }
 
     public void save(StatistikaReprezentacije statistikaReprezentacije) {
