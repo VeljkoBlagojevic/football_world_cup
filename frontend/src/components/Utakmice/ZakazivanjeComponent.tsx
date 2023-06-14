@@ -11,7 +11,7 @@ const ZakazivanjeComponent = () => {
     const [formData, setFormData] = useState<Utakmica>({
         domacin: new Reprezentacija(0, '', '', '', ''),
         gost: new Reprezentacija(0, '', '', '', ''),
-        stadion: new Stadion(0, '', '', 0, ''),
+        stadion: new Stadion(0, '', 0, ''),
         odigrana: false,
         termin: {
             pocetak: new Date(),
@@ -89,7 +89,7 @@ const ZakazivanjeComponent = () => {
 
         setFormData((prevFormData) => ({
             ...prevFormData,
-            stadion: selectedStadion || new Stadion(0, '', '', 0, ''),
+            stadion: selectedStadion || new Stadion(0, '', 0, ''),
         }));
     };
 
@@ -108,7 +108,7 @@ const ZakazivanjeComponent = () => {
             setFormData({
                 domacin: new Reprezentacija(0, '', '', '', ''),
                 gost: new Reprezentacija(0, '', '', '', ''),
-                stadion: new Stadion(0, '', '', 0, ''),
+                stadion: new Stadion(0, '', 0,  ''),
                 odigrana: false,
                 termin: {
                     pocetak: new Date(),

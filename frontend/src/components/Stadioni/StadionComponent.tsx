@@ -10,7 +10,6 @@ const StadionComponent = ({stadion}: StadionComponentProps) => {
         <div className="stadion">
             <h1>{stadion?.naziv}</h1>
             <h4>Kapacitet: {stadion?.kapacitet}</h4>
-            <h4>Lokacija: {stadion?.lokacija}</h4>
             <img src={stadion?.slika} alt={stadion?.naziv}/>
         </div>
     );

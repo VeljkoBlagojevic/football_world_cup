@@ -28,7 +28,7 @@ public class TombolaCSV extends Tombola {
     }
     @Override
     protected List<Grupa> getGrupe() {
-        Path filePath = Paths.get("C:\\Users\\VeljkoBlagojevic\\Desktop\\reprezentacije3.csv");
+        Path filePath = Paths.get("csv\\grupereprezentacije.csv");
         try (Reader reader = Files.newBufferedReader(filePath)) {
             CsvToBean<GrupaReprezentacija> csvToBean = new CsvToBeanBuilder<GrupaReprezentacija>(reader)
                     .withType(GrupaReprezentacija.class)

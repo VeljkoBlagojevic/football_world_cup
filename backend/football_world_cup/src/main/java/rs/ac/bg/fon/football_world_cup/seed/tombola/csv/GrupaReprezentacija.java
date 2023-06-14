@@ -16,9 +16,6 @@ public class GrupaReprezentacija {
     @CsvBindByName(column = "grupa")
     private String grupa;
 
-    @CsvBindByName(column = "id")
-    private Long id;
-
     @CsvBindByName(column = "naziv")
     private String naziv;
 

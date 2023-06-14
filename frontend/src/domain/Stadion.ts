@@ -3,8 +3,6 @@ export class Stadion {
 
     naziv: string;
 
-    lokacija: string;
-
     kapacitet: number;
 
     slika: string;
@@ -12,13 +10,11 @@ export class Stadion {
     constructor(
         id: number,
         naziv: string,
-        lokacija: string,
         kapacitet: number,
         slika: string
     ) {
         this.id = id;
         this.naziv = naziv;
-        this.lokacija = lokacija;
         this.kapacitet = kapacitet;
         this.slika = slika;
     }
