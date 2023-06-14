@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-public class CountryCodeSeeder {
+public class CountryCodeHttpClient {
 
     public void seedCountryCodes(List<Reprezentacija> reprezentacije) {
         RestTemplate restTemplate = new RestTemplate();

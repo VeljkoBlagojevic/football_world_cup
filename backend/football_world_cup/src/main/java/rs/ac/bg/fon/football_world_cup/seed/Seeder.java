@@ -13,8 +13,8 @@ public class Seeder {
     private final AbstractStadionSeeder stadionSeeder;
     private final Tombola tombola;
 
-    public Seeder(@Qualifier("webScrapeStadionSeeder") AbstractStadionSeeder stadionSeeder,
-                  @Qualifier("tombolaCSV") Tombola tombola) {
+    public Seeder(@Qualifier("inMemoryStadionSeeder") AbstractStadionSeeder stadionSeeder,
+                  @Qualifier("tombolaHttpClient") Tombola tombola) {
         this.stadionSeeder = stadionSeeder;
 
         this.tombola = tombola;

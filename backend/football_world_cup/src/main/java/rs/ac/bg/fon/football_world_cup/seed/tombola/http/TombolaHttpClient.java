@@ -15,12 +15,12 @@ import java.util.List;
 @Component
 public class TombolaHttpClient extends Tombola {
     private final GroupMapper groupMapper;
-    private final CountryCodeSeeder countryCodeSeeder;
+    private final CountryCodeHttpClient countryCodeHttpClient;
     private final CountryFlagsSeeder countryFlagsSeeder;
-    public TombolaHttpClient(GrupaRepository grupaRepository, ReprezentacijaRepository reprezentacijaRepository, StatistikaReprezentacijeRepository statistikaReprezentacijeRepository, GroupMapper groupMapper, CountryCodeSeeder countryCodeSeeder, CountryFlagsSeeder countryFlagsSeeder) {
+    public TombolaHttpClient(GrupaRepository grupaRepository, ReprezentacijaRepository reprezentacijaRepository, StatistikaReprezentacijeRepository statistikaReprezentacijeRepository, GroupMapper groupMapper, CountryCodeHttpClient countryCodeHttpClient, CountryFlagsSeeder countryFlagsSeeder) {
         super(grupaRepository, reprezentacijaRepository, statistikaReprezentacijeRepository);
         this.groupMapper = groupMapper;
-        this.countryCodeSeeder = countryCodeSeeder;
+        this.countryCodeHttpClient = countryCodeHttpClient;
         this.countryFlagsSeeder = countryFlagsSeeder;
     }
     @Override
@@ -30,7 +30,7 @@ public class TombolaHttpClient extends Tombola {
         ResponseEntity<Group[]> groups = restTemplate.getForEntity(url, Group[].class);
         return Arrays.stream(groups.getBody())
                 .map(groupMapper::onlineToDomain)
-                .peek(grupa -> countryCodeSeeder.seedCountryCodes(grupa.getReprezentacije()))
+                .peek(grupa -> countryCodeHttpClient.seedCountryCodes(grupa.getReprezentacije()))
                 .peek(grupa -> countryFlagsSeeder.seedCountryFlags(grupa.getReprezentacije()))
                 .toList();
     }

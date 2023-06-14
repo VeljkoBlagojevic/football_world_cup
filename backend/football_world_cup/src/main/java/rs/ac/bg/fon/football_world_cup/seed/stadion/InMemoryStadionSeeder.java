@@ -7,8 +7,8 @@ import rs.ac.bg.fon.football_world_cup.repository.StadionRepository;
 import java.util.List;
 
 @Component
-public class BasicStadionSeeder extends AbstractStadionSeeder {
-    public BasicStadionSeeder(StadionRepository stadionRepository) {
+public class InMemoryStadionSeeder extends AbstractStadionSeeder {
+    public InMemoryStadionSeeder(StadionRepository stadionRepository) {
         super(stadionRepository);
     }
 
