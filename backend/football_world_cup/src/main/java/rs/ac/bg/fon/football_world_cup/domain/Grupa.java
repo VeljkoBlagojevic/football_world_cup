@@ -34,12 +34,16 @@ public class Grupa {
     @Size(min = BROJ_REPREZENTACIJA_U_GRUPI, max = BROJ_REPREZENTACIJA_U_GRUPI, message = "Moguce je tacno " + BROJ_REPREZENTACIJA_U_GRUPI + " ekipe u jednoj grupi")
     private List<Reprezentacija> reprezentacije = new ArrayList<>(BROJ_REPREZENTACIJA_U_GRUPI);
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     @Valid
     @Size(min = BROJ_REPREZENTACIJA_U_GRUPI, max = BROJ_REPREZENTACIJA_U_GRUPI, message = "Moguce je tacno " + BROJ_REPREZENTACIJA_U_GRUPI + " ekipe u jednoj grupi")
     private List<StatistikaReprezentacije> statistikeReprezentacija = new ArrayList<>(BROJ_REPREZENTACIJA_U_GRUPI);
 
     public void addStatistikaReprezentacija(StatistikaReprezentacije statistikaReprezentacije) {
         statistikeReprezentacija.add(statistikaReprezentacije);
+    }
+
+    public void addReprezentacija(Reprezentacija reprezentacija) {
+        reprezentacije.add(reprezentacija);
     }
 }

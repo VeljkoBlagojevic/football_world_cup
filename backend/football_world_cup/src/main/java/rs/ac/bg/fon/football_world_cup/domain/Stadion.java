@@ -25,8 +25,6 @@ public class Stadion {
     @NotBlank(message = "Mora postojati naziv stadiona")
     private String naziv;
 
-    private String lokacija;
-
     @PositiveOrZero(message = "Kapacitet mora biti pozitivan celobrojan broj")
     private int kapacitet;
 

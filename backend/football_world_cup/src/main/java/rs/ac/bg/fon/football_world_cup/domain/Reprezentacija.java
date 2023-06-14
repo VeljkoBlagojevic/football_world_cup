@@ -5,7 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -22,7 +21,6 @@ public class Reprezentacija {
 
     @Id
     @GeneratedValue
-    @NotNull(message = "Mora se proslediti identifikator reprezentacije")
     private Long id;
 
     @NotBlank(message = "Naziv reprezentacije ne sme biti prazan")

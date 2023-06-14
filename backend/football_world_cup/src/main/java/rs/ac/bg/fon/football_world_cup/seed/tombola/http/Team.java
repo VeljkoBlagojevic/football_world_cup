@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.football_world_cup.seed;
+package rs.ac.bg.fon.football_world_cup.seed.tombola.http;
 
 
 import lombok.*;
