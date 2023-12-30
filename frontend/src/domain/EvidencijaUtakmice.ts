@@ -1,8 +1,8 @@
 import {Predaja} from "./Predaja";
 
-export class EvidencijaUtakmice {
-    public id?: number;
-    public brojGolovaDomacina?: number;
-    public brojGolovaGosta?: number;
-    public predaja?: Predaja;
+export interface EvidencijaUtakmice {
+    id?: number;
+    brojGolovaDomacina?: number;
+    brojGolovaGosta?: number;
+    predaja?: Predaja;
 }

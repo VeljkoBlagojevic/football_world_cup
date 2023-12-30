@@ -3,6 +3,7 @@ package rs.ac.bg.fon.football_world_cup.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.football_world_cup.domain.Reprezentacija;
+import rs.ac.bg.fon.football_world_cup.domain.StatistikaReprezentacije;
 import rs.ac.bg.fon.football_world_cup.repository.ReprezentacijaRepository;
 
 import java.util.List;

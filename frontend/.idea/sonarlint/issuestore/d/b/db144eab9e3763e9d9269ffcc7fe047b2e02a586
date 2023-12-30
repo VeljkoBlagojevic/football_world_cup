@@ -1,0 +1,5 @@
+
+’typescript:S6544!"jPromises must be awaited, end with a call to .catch, or end with a call to .then with a rejection handler.(ù×´Ÿıÿÿÿÿ8Ñåª©‹1
+’typescript:S6606R"jPrefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.(¤ÈÅÜüÿÿÿÿ8Øåª©‹1
+’typescript:S6606\"jPrefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.(ŞÊóÁûÿÿÿÿ8Øåª©‹1
+ttypescript:S6544~"RPromise-returning function provided to attribute where a void return was expected.(âÊìt8Ùåª©‹1
