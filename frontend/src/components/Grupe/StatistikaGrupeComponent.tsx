@@ -20,10 +20,12 @@ const StatistikaGrupeComponent: FC<StatistikaGrupeProps> = ({ statistike }) => {
     /* Initial or default chart options */
   });
 
-  const generateChartOptions = (data: StatistikaReprezentacije[]) => {
+  const generateChartOptions = (
+    data: StatistikaReprezentacije[]
+  ): Highcharts.Options => {
     // Extract relevant data and create Highcharts options
-    const categories = data.map((item) => item.reprezentacija?.naziv || "");
-    const seriesData = data.map((item) => item.brojOsvojenihPoena || 0);
+    const categories = data.map((item) => item.reprezentacija?.naziv ?? "");
+    const seriesData = data.map((item) => item.brojOsvojenihPoena ?? 0);
 
     return {
       chart: {
@@ -71,7 +73,8 @@ const StatistikaGrupeComponent: FC<StatistikaGrupeProps> = ({ statistike }) => {
         {
           name: "Points",
           data: seriesData,
-          color: "rgba(255, 201, 71, 0.75)"
+          color: "rgba(255, 201, 71, 0.75)",
+          type: "bar",
         },
       ],
     };

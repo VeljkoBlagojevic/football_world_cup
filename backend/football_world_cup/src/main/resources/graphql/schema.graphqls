@@ -1,0 +1,75 @@
+scalar LocalDateTime
+
+type Reprezentacija {
+    id: ID!
+    naziv: String!
+    dvoslovniNaziv: String
+    troslovniNaziv: String
+    zastava: String
+}
+
+type Stadion {
+    id: ID!
+    naziv: String!
+    kapacitet: Int!
+    slika: String
+}
+
+type Termin {
+    pocetak: LocalDateTime!
+    kraj: LocalDateTime!
+}
+
+input TerminInput {
+    pocetak: LocalDateTime!
+    kraj: LocalDateTime!
+}
+
+enum Predaja {
+    PREDAO_DOMACIN
+    PREDAO_GOST
+    NEMA_PREDAJE
+}
+
+type EvidencijaUtakmice {
+    id: ID!
+    brojGolovaDomacina: Int!
+    brojGolovaGosta: Int!
+    predaja: Predaja!
+}
+
+input EvidencijaUtakmiceInput {
+    id: ID!
+    brojGolovaDomacina: Int!
+    brojGolovaGosta: Int!
+    predaja: Predaja!
+}
+
+type Utakmica {
+    id: ID
+    domacin: Reprezentacija!
+    gost: Reprezentacija!
+    evidencijaUtakmice: EvidencijaUtakmice
+    stadion: Stadion!
+    termin: Termin!
+    odigrana: Boolean!
+}
+
+input UtakmicaInput {
+    domacinId: ID!
+    gostId: ID!
+    stadionId: ID!
+    terminInput: TerminInput!
+    odigrana: Boolean
+}
+
+type Query {
+    getReprezentacija(id: ID!): Reprezentacija
+    getAllReprezentacije: [Reprezentacija]
+    getAllStadioni: [Stadion]
+    getStadion(id: ID!): Stadion
+}
+
+type Mutation {
+    zakaziUtakmicu(utakmicaInput: UtakmicaInput!): Utakmica
+}

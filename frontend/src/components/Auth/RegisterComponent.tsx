@@ -21,12 +21,6 @@ const RegisterComponent = () => {
     password: "",
   });
 
-  const [error, setError] = useState<string>("");
-
-  const handleCloseError = () => {
-    setError("");
-  };
-
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setRegisterData((prevData) => ({
@@ -43,8 +37,7 @@ const RegisterComponent = () => {
       );
       navigate("/login");
     } catch (error: any) {
-      setError(error.response.data.body.detail);
-      console.error(error);
+      alert(error.response.data.body.detail);
     }
   };
 
@@ -115,14 +108,6 @@ const RegisterComponent = () => {
           Register
         </button>
       </div>
-      {error !== "" && (
-        <div>
-          <div>{error}</div>
-          <button type="button" onClick={handleCloseError}>
-            Close
-          </button>
-        </div>
-      )}
     </div>
   );
 };

@@ -10,7 +10,6 @@ const GrupaComponent = ({grupa}: GrupaComponentProps) => {
 
     const navigate = useNavigate();
     function navigateToReprezentacija(id: number | undefined) {
-        console.log(id);
         navigate(`/reprezentacije/${id}`);
     }
 

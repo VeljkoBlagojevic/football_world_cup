@@ -58,7 +58,6 @@ const EvidencijaComponent = () => {
     e.preventDefault();
 
     try {
-      console.log(JSON.stringify(evidencijaUtakmice));
       const response = await axios.post(
         "http://localhost:8080/api/v1/utakmice/" + id,
         evidencijaUtakmice,
@@ -68,7 +67,6 @@ const EvidencijaComponent = () => {
           },
         }
       );
-      console.log(response.data); // Handle success response
       alert("Uspesno ste evidentirali utakmicu");
       navigate("/grupe");
       setEvidencijaUtakmice({

@@ -13,10 +13,9 @@ public class Seeder {
     private final AbstractStadionSeeder stadionSeeder;
     private final Tombola tombola;
 
-    public Seeder(@Qualifier("inMemoryStadionSeeder") AbstractStadionSeeder stadionSeeder,
+    public Seeder(@Qualifier("webScrapeStadionSeeder") AbstractStadionSeeder stadionSeeder,
                   @Qualifier("tombolaHttpClient") Tombola tombola) {
         this.stadionSeeder = stadionSeeder;
-
         this.tombola = tombola;
     }
 

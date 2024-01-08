@@ -1,13 +1,15 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import axios from "axios";
-
 import { Utakmica } from "../../domain/Utakmica";
 import { Reprezentacija } from "../../domain/Reprezentacija";
 import { Stadion } from "../../domain/Stadion";
 import "./Zakazivanje.css";
 import { useNavigate } from "react-router-dom";
-import { AppState } from "../../redux/initialState";
-import { useSelector } from "react-redux";
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  GET_ALL_REPREZENTACIJE,
+  GET_ALL_STADIONI,
+} from "../../graphql/queries";
+import { ZAKAZI_UTAKMICU } from "../../graphql/mutations";
 
 const ZakazivanjeComponent = () => {
   const [formData, setFormData] = useState<Utakmica>({
@@ -20,50 +22,49 @@ const ZakazivanjeComponent = () => {
       kraj: new Date(),
     },
   });
-  const token = useSelector((state: AppState) => state.token);
   const [reprezentacije, setReprezentacije] = useState<Reprezentacija[]>([]);
   const [stadioni, setStadioni] = useState<Stadion[]>([]);
+
+  const { data: reprezentacijeData, loading: reprezentacijeLoading } = useQuery(
+    GET_ALL_REPREZENTACIJE
+  );
+  const { data: stadioniData, loading: stadioniLoading } =
+    useQuery(GET_ALL_STADIONI);
+
+  const [zakaziUtakmicu, { error: zakaziUtakmicuError }] =
+    useMutation(ZAKAZI_UTAKMICU);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      await fetchReprezentacije();
-      await fetchStadioni();
-    };
+    if (!reprezentacijeLoading && !stadioniLoading) {
+      fetchReprezentacije();
+      fetchStadioni();
+      if (reprezentacije.length > 0 && stadioni.length > 0) {
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          domacin: reprezentacije[0],
+          gost: reprezentacije[0],
+          stadion: stadioni[0],
+        }));
+      }
+    }
+  }, [
+    reprezentacijeData,
+    stadioniData,
+    reprezentacijeLoading,
+    stadioniLoading,
+  ]);
 
-    fetchData();
-  }, []);
-
-  const fetchReprezentacije = async () => {
-    try {
-      const response = await axios.get<Reprezentacija[]>(
-        "http://localhost:8080/api/v1/reprezentacije",
-        {
-          headers: {
-            Authorization: `Bearer ${token}}`,
-          },
-        }
-      );
-      setReprezentacije(response.data);
-    } catch (error) {
-      console.error(error);
+  const fetchReprezentacije = () => {
+    if (reprezentacijeData) {
+      setReprezentacije(reprezentacijeData.getAllReprezentacije);
     }
   };
 
-  const fetchStadioni = async () => {
-    try {
-      const response = await axios.get<Stadion[]>(
-        "http://localhost:8080/api/v1/stadioni",
-        {
-          headers: {
-            Authorization: `Bearer ${token}}`,
-          },
-        }
-      );
-      setStadioni(response.data);
-    } catch (error) {
-      console.error(error);
+  const fetchStadioni = () => {
+    if (stadioniData) {
+      setStadioni(stadioniData.getAllStadioni);
     }
   };
 
@@ -114,39 +115,43 @@ const ZakazivanjeComponent = () => {
     }));
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    console.log("FORM DATA");
-    console.log(formData);
+    const utakmicaInput = {
+      domacinId: formData.domacin.id,
+      gostId: formData.gost.id,
+      stadionId: formData.stadion.id,
+      odigrana: false,
+      terminInput: {
+        pocetak: formData.termin.pocetak,
+        kraj: formData.termin.kraj,
+      },
+    };
 
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/utakmice",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}}`,
+    console.log(utakmicaInput);
+
+    zakaziUtakmicu({
+      variables: {
+        utakmicaInput,
+      },
+    })
+      .then(() => {
+        navigate("/utakmice");
+      })
+      .catch((error) => alert(error))
+      .finally(() => {
+        setFormData({
+          domacin: {} as Reprezentacija,
+          gost: {} as Reprezentacija,
+          stadion: {} as Stadion,
+          odigrana: false,
+          termin: {
+            pocetak: new Date(),
+            kraj: new Date(),
           },
-        }
-      );
-      console.log(response.data); // Handle success response
-      alert("Uspesno ste zakazali novu utakmicu");
-      navigate("/utakmice");
-      setFormData({
-        domacin: {} as Reprezentacija,
-        gost: {} as Reprezentacija,
-        stadion: {} as Stadion,
-        odigrana: false,
-        termin: {
-          pocetak: new Date(),
-          kraj: new Date(),
-        },
+        });
       });
-    } catch (error: any) {
-      alert(error.response.data.body.detail);
-      console.error(error); // Handle error response
-    }
   };
 
   return (
@@ -158,7 +163,7 @@ const ZakazivanjeComponent = () => {
           onChange={(e) => handleReprezentacijaChange(e, "domacin")}
         >
           <option disabled>Izaberite reprezentaciju domaćina</option>
-          {reprezentacije.map((reprezentacija) => (
+          {reprezentacije?.map((reprezentacija) => (
             <option key={reprezentacija.id} value={reprezentacija.naziv}>
               {reprezentacija.naziv}
             </option>
@@ -173,7 +178,7 @@ const ZakazivanjeComponent = () => {
           onChange={(e) => handleReprezentacijaChange(e, "gost")}
         >
           <option disabled>Izaberite reprezentaciju gosta</option>
-          {reprezentacije.map((reprezentacija) => (
+          {reprezentacije?.map((reprezentacija) => (
             <option key={reprezentacija.id} value={reprezentacija.naziv}>
               {reprezentacija.naziv}
             </option>
@@ -185,7 +190,7 @@ const ZakazivanjeComponent = () => {
         Stadion:
         <select name="stadion" onChange={handleStadionChange}>
           <option disabled>Izaberite stadion</option>
-          {stadioni.map((stadion) => (
+          {stadioni?.map((stadion) => (
             <option key={stadion.id} value={stadion.naziv}>
               {stadion.naziv}
             </option>

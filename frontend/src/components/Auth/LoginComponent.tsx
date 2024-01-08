@@ -9,13 +9,8 @@ const LoginComponent: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [error, setError] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
-  const handleCloseError = () => {
-    setError("");
-  };
 
   useEffect(() => {
     dispatch(logout());
@@ -44,18 +39,16 @@ const LoginComponent: FC = () => {
           })
           .then((userResponse) => {
             const currentUser = userResponse.data;
-            console.log("Currently logged in user:", currentUser);
             dispatch(login(jwtToken, currentUser));
           })
           .catch((error) => {
             console.error("Error fetching currently logged in user:", error);
-            setError(error.response.data.body.detail);
+            alert(error.response.data.body.detail);
           });
         navigate("/pocetna");
       })
       .catch((error) => {
-        console.error("Login error:", error);
-        setError(error.response.data.body.detail);
+        alert(error.response.data.body.detail);
       });
   };
 
@@ -93,14 +86,6 @@ const LoginComponent: FC = () => {
           Login
         </button>
       </div>
-      {error !== "" && (
-        <div>
-          <div>{error}</div>
-          <button type="button" onClick={handleCloseError}>
-            Close
-          </button>
-        </div>
-      )}
     </div>
   );
 };

@@ -21,7 +21,6 @@ const GrupeComponent = () => {
             },
           }
         );
-        console.log(response.data);
         setGrupe(response.data);
       } catch (error) {
         console.error("Failed to fetch stadions:", error);
@@ -38,7 +37,9 @@ const GrupeComponent = () => {
         {grupe.map((grupa) => (
           <>
             <GrupaComponent grupa={grupa} key={grupa.id} />
-            <StatistikaGrupeComponent statistike={grupa.statistikeReprezentacija} key={grupa.id}
+            <StatistikaGrupeComponent
+              statistike={grupa.statistikeReprezentacija}
+              key={grupa.id}
             />
           </>
         ))}

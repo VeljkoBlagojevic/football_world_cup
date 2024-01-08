@@ -1,49 +1,56 @@
 .register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
-    width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  width: 300px;
 }
 
 .select-role {
-    background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .form-group label {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .form-control {
-    background-color: rgba(255, 255, 255, 0.75);
-    border: none;
-    outline: none;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
 }
 
 .btn-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
 }
 
 .btn-login {
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .btn-login:hover {
-    background-color: #34495e;
+  background-color: rgba(86, 4, 44, 0.75);
 }
 
+.error-container {
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(86, 4, 44, 0.75);
+  color: white;
+}

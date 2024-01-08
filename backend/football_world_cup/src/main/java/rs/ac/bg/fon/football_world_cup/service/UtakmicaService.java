@@ -53,6 +53,7 @@ public class UtakmicaService {
 
 
         Preconditions.checkArgument(!domacin.equals(gost), "Ne moze reprezentacija da igra sama sa sobom utakmicu");
+        Preconditions.checkArgument(!utakmica.isOdigrana(), "Ne mozete zakazati utakmicu koja je odigrana vec");
         Preconditions.checkArgument(utakmica.getTermin().getPocetak().isAfter(LocalDateTime.now()), "Vreme odvijanja zakazane utakmice mora biti u buducnosti");
         Preconditions.checkArgument(utakmica.getTermin().getPocetak().isEqual(utakmica.getTermin().getKraj().minusMinutes(TRAJANJE_UTAKMICE)), "Utakmica mora trajati " + TRAJANJE_UTAKMICE + " minuta");
         Preconditions.checkArgument(grupaService.izIsteGrupe(domacin, gost), "Reprezentacije moraju biti iz iste grupe");

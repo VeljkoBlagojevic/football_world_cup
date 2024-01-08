@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.8.8",
     "@aws-amplify/ui-react": "^4.6.4",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
@@ -16,6 +17,7 @@
     "@types/react-dom": "^18.2.4",
     "@types/react-redux": "^7.1.33",
     "axios": "^1.4.0",
+    "graphql": "^16.8.1",
     "highcharts": "^11.2.0",
     "highcharts-react-official": "^3.2.1",
     "react": "^18.2.0",

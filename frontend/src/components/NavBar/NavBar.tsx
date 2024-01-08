@@ -14,11 +14,6 @@ const NavBar: FC = () => {
           {loggedInUser !== undefined && (
             <>
               <li className="nav-item">
-                <Link to="/" className="nav-link">
-                  Početna
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link to="/stadioni" className="nav-link">
                   Stadioni
                 </Link>
@@ -36,6 +31,11 @@ const NavBar: FC = () => {
               <li className="nav-item">
                 <Link to="/utakmice" className="nav-link">
                   Utakmice
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/" className="nav-link">
+                  Odjava
                 </Link>
               </li>
             </>
